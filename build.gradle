@@ -17,9 +17,9 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    compile 'org.spongepowered:spongeapi:7.1.0'
+    compileOnly 'org.spongepowered:spongeapi:7.1.0'
 }
 
 compileKotlin {
