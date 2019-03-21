@@ -5,6 +5,7 @@ import frontier.ske.java.util.unwrap
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.effect.potion.PotionEffect
 import org.spongepowered.api.entity.Entity
+import org.spongepowered.api.text.Text
 
 inline var Entity.angerLevel: Int
     get() = getOrElse(Keys.ANGER, 0)
@@ -40,6 +41,12 @@ inline var Entity.customNameVisible: Boolean
     get() = get(Keys.CUSTOM_NAME_VISIBLE).orElse(false)
     set(value) {
         offer(Keys.CUSTOM_NAME_VISIBLE, value)
+    }
+
+inline var Entity.displayName: Text?
+    get() = get(Keys.DISPLAY_NAME).unwrap()
+    set(value) {
+        offer(Keys.DISPLAY_NAME, value)
     }
 
 inline var Entity.fireDamageDelay: Int
