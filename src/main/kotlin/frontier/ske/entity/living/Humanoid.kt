@@ -1,5 +1,6 @@
 package frontier.ske.entity.living
 
+import frontier.ske.java.util.unwrap
 import org.spongepowered.api.data.key.Keys
 import org.spongepowered.api.entity.living.Humanoid
 import org.spongepowered.api.entity.living.player.gamemode.GameMode
@@ -30,8 +31,8 @@ inline var Humanoid.gameMode: GameMode
         offer(Keys.GAME_MODE, value)
     }
 
-inline var Humanoid.skinUniqueId: UUID
-    get() = get(Keys.SKIN_UNIQUE_ID).get()
+inline var Humanoid.skinUniqueId: UUID?
+    get() = get(Keys.SKIN_UNIQUE_ID).unwrap()
     set(value) {
         offer(Keys.SKIN_UNIQUE_ID, value)
     }
