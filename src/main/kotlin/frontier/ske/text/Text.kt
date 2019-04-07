@@ -2,6 +2,7 @@ package frontier.ske.text
 
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.Text
+import org.spongepowered.api.text.format.TextColor
 import org.spongepowered.api.text.format.TextColors
 import org.spongepowered.api.text.format.TextColors.*
 import org.spongepowered.api.text.format.TextStyles
@@ -26,6 +27,8 @@ operator fun Text.unaryMinus(): String = TextSerializers.FORMATTING_CODE.seriali
 
 fun String.text(): LiteralText = Text.of(this)
 fun String.newText(): LiteralText.Builder = Text.builder(this)
+
+fun String.color(color: TextColor) = this.newText().color(color).build()
 
 fun String.black(): Text = this.newText().black().build()
 fun String.darkBlue(): Text = this.newText().darkBlue().build()
@@ -77,30 +80,34 @@ fun Text.Builder.italic(): Text.Builder = style(ITALIC)
 
 fun Text.Builder.reset(): Text.Builder = color(TextColors.RESET).style(TextStyles.RESET)
 
-fun Text.black(): Text = this.toBuilder().color(BLACK).build()
-fun Text.darkBlue(): Text = this.toBuilder().color(DARK_BLUE).build()
-fun Text.darkGreen(): Text = this.toBuilder().color(DARK_GREEN).build()
-fun Text.darkAqua(): Text = this.toBuilder().color(DARK_AQUA).build()
-fun Text.darkRed(): Text = this.toBuilder().color(DARK_RED).build()
-fun Text.purple(): Text = this.toBuilder().color(DARK_PURPLE).build()
-fun Text.gold(): Text = this.toBuilder().color(GOLD).build()
-fun Text.gray(): Text = this.toBuilder().color(GRAY).build()
-fun Text.darkGray(): Text = this.toBuilder().color(DARK_GRAY).build()
-fun Text.blue(): Text = this.toBuilder().color(BLUE).build()
-fun Text.aqua(): Text = this.toBuilder().color(AQUA).build()
-fun Text.green(): Text = this.toBuilder().color(GREEN).build()
-fun Text.red(): Text = this.toBuilder().color(RED).build()
-fun Text.pink(): Text = this.toBuilder().color(LIGHT_PURPLE).build()
-fun Text.yellow(): Text = this.toBuilder().color(YELLOW).build()
-fun Text.white(): Text = this.toBuilder().color(WHITE).build()
+fun Text.color(color: TextColor): Text = this.toBuilder().color(color).build()
 
-fun Text.obfuscated(): Text = this.toBuilder().style(OBFUSCATED).build()
-fun Text.bold(): Text = this.toBuilder().style(BOLD).build()
-fun Text.strikethrough(): Text = this.toBuilder().style(STRIKETHROUGH).build()
-fun Text.underline(): Text = this.toBuilder().style(UNDERLINE).build()
-fun Text.italic(): Text = this.toBuilder().style(ITALIC).build()
+fun Text.black(): Text = this.toBuilder().black().build()
+fun Text.darkBlue(): Text = this.toBuilder().darkBlue().build()
+fun Text.darkGreen(): Text = this.toBuilder().darkGreen().build()
+fun Text.darkAqua(): Text = this.toBuilder().darkAqua().build()
+fun Text.darkRed(): Text = this.toBuilder().darkRed().build()
+fun Text.purple(): Text = this.toBuilder().purple().build()
+fun Text.gold(): Text = this.toBuilder().gold().build()
+fun Text.gray(): Text = this.toBuilder().gray().build()
+fun Text.darkGray(): Text = this.toBuilder().darkGray().build()
+fun Text.blue(): Text = this.toBuilder().blue().build()
+fun Text.aqua(): Text = this.toBuilder().aqua().build()
+fun Text.green(): Text = this.toBuilder().green().build()
+fun Text.red(): Text = this.toBuilder().red().build()
+fun Text.pink(): Text = this.toBuilder().pink().build()
+fun Text.yellow(): Text = this.toBuilder().yellow().build()
+fun Text.white(): Text = this.toBuilder().white().build()
+
+fun Text.obfuscated(): Text = this.toBuilder().obfuscated().build()
+fun Text.bold(): Text = this.toBuilder().bold().build()
+fun Text.strikethrough(): Text = this.toBuilder().strikethrough().build()
+fun Text.underline(): Text = this.toBuilder().underline().build()
+fun Text.italic(): Text = this.toBuilder().italic().build()
 
 fun Text.reset(): Text = this.toBuilder().color(TextColors.RESET).style(TextStyles.RESET).build()
+
+fun Any.color(color: TextColor): Text = this.toString().newText().color(color).build()
 
 fun Any.black(): Text = this.toString().newText().black().build()
 fun Any.darkBlue(): Text = this.toString().newText().darkBlue().build()
