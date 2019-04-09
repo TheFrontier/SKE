@@ -1,13 +1,17 @@
 package frontier.ske.text
 
+import org.spongepowered.api.command.CommandSource
+import org.spongepowered.api.item.inventory.ItemStackSnapshot
 import org.spongepowered.api.text.LiteralText
 import org.spongepowered.api.text.Text
+import org.spongepowered.api.text.action.TextActions
 import org.spongepowered.api.text.format.TextColor
 import org.spongepowered.api.text.format.TextColors
 import org.spongepowered.api.text.format.TextColors.*
 import org.spongepowered.api.text.format.TextStyles
 import org.spongepowered.api.text.format.TextStyles.*
 import org.spongepowered.api.text.serializer.TextSerializers
+import java.net.URL
 
 fun Iterable<Text>.join(): Text = Text.join(this)
 infix fun Iterable<Text>.joinWith(separator: Text): Text = Text.joinWith(separator, this)
@@ -55,6 +59,20 @@ fun String.italic(): Text = this.newText().italic().build()
 
 fun String.reset(): Text = this.newText().reset().build()
 
+fun String.openUrl(url: String): Text = this.newText().onClick(TextActions.openUrl(URL(url))).build()
+fun String.openUrl(url: URL): Text = this.newText().onClick(TextActions.openUrl(url)).build()
+fun String.runCommand(command: String): Text = this.newText().onClick(TextActions.runCommand(command)).build()
+fun String.suggestCommand(command: String): Text = this.newText().onClick(TextActions.suggestCommand(command)).build()
+fun String.changePage(page: Int): Text = this.newText().onClick(TextActions.changePage(page)).build()
+fun String.executeCallback(callback: (CommandSource) -> Unit): Text =
+    this.newText().onClick(TextActions.executeCallback(callback)).build()
+
+fun String.showText(text: String): Text = this.newText().onHover(TextActions.showText(!text)).build()
+fun String.showText(text: Text): Text = this.newText().onHover(TextActions.showText(text)).build()
+fun String.showItem(item: ItemStackSnapshot): Text = this.newText().onHover(TextActions.showItem(item)).build()
+
+fun String.insertText(text: String): Text = this.newText().onShiftClick(TextActions.insertText(text)).build()
+
 fun Text.Builder.black(): Text.Builder = color(BLACK)
 fun Text.Builder.darkBlue(): Text.Builder = color(DARK_BLUE)
 fun Text.Builder.darkGreen(): Text.Builder = color(DARK_GREEN)
@@ -79,6 +97,20 @@ fun Text.Builder.underline(): Text.Builder = style(UNDERLINE)
 fun Text.Builder.italic(): Text.Builder = style(ITALIC)
 
 fun Text.Builder.reset(): Text.Builder = color(TextColors.RESET).style(TextStyles.RESET)
+
+fun Text.Builder.openUrl(url: String): Text = this.onClick(TextActions.openUrl(URL(url))).build()
+fun Text.Builder.openUrl(url: URL): Text = this.onClick(TextActions.openUrl(url)).build()
+fun Text.Builder.runCommand(command: String): Text = this.onClick(TextActions.runCommand(command)).build()
+fun Text.Builder.suggestCommand(command: String): Text = this.onClick(TextActions.suggestCommand(command)).build()
+fun Text.Builder.changePage(page: Int): Text = this.onClick(TextActions.changePage(page)).build()
+fun Text.Builder.executeCallback(callback: (CommandSource) -> Unit): Text =
+    this.onClick(TextActions.executeCallback(callback)).build()
+
+fun Text.Builder.showText(text: String): Text = this.onHover(TextActions.showText(!text)).build()
+fun Text.Builder.showText(text: Text): Text = this.onHover(TextActions.showText(text)).build()
+fun Text.Builder.showItem(item: ItemStackSnapshot): Text = this.onHover(TextActions.showItem(item)).build()
+
+fun Text.Builder.insertText(text: String): Text = this.onShiftClick(TextActions.insertText(text)).build()
 
 fun Text.color(color: TextColor): Text = this.toBuilder().color(color).build()
 
@@ -107,6 +139,20 @@ fun Text.italic(): Text = this.toBuilder().italic().build()
 
 fun Text.reset(): Text = this.toBuilder().color(TextColors.RESET).style(TextStyles.RESET).build()
 
+fun Text.openUrl(url: String): Text = this.toBuilder().onClick(TextActions.openUrl(URL(url))).build()
+fun Text.openUrl(url: URL): Text = this.toBuilder().onClick(TextActions.openUrl(url)).build()
+fun Text.runCommand(command: String): Text = this.toBuilder().onClick(TextActions.runCommand(command)).build()
+fun Text.suggestCommand(command: String): Text = this.toBuilder().onClick(TextActions.suggestCommand(command)).build()
+fun Text.changePage(page: Int): Text = this.toBuilder().onClick(TextActions.changePage(page)).build()
+fun Text.executeCallback(callback: (CommandSource) -> Unit): Text =
+    this.toBuilder().onClick(TextActions.executeCallback(callback)).build()
+
+fun Text.showText(text: String): Text = this.toBuilder().onHover(TextActions.showText(!text)).build()
+fun Text.showText(text: Text): Text = this.toBuilder().onHover(TextActions.showText(text)).build()
+fun Text.showItem(item: ItemStackSnapshot): Text = this.toBuilder().onHover(TextActions.showItem(item)).build()
+
+fun Text.insertText(text: String): Text = this.toBuilder().onShiftClick(TextActions.insertText(text)).build()
+
 fun Any.color(color: TextColor): Text = this.toString().newText().color(color).build()
 
 fun Any.black(): Text = this.toString().newText().black().build()
@@ -133,3 +179,19 @@ fun Any.underline(): Text = this.toString().newText().underline().build()
 fun Any.italic(): Text = this.toString().newText().italic().build()
 
 fun Any.reset(): Text = this.toString().newText().reset().build()
+
+fun Any.openUrl(url: String): Text = this.toString().newText().onClick(TextActions.openUrl(URL(url))).build()
+fun Any.openUrl(url: URL): Text = this.toString().newText().onClick(TextActions.openUrl(url)).build()
+fun Any.runCommand(command: String): Text = this.toString().newText().onClick(TextActions.runCommand(command)).build()
+fun Any.suggestCommand(command: String): Text =
+    this.toString().newText().onClick(TextActions.suggestCommand(command)).build()
+
+fun Any.changePage(page: Int): Text = this.toString().newText().onClick(TextActions.changePage(page)).build()
+fun Any.executeCallback(callback: (CommandSource) -> Unit): Text =
+    this.toString().newText().onClick(TextActions.executeCallback(callback)).build()
+
+fun Any.showText(text: String): Text = this.toString().newText().onHover(TextActions.showText(!text)).build()
+fun Any.showText(text: Text): Text = this.toString().newText().onHover(TextActions.showText(text)).build()
+fun Any.showItem(item: ItemStackSnapshot): Text = this.toString().newText().onHover(TextActions.showItem(item)).build()
+
+fun Any.insertText(text: String): Text = this.toString().newText().onShiftClick(TextActions.insertText(text)).build()
