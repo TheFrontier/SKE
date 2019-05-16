@@ -1,15 +1,14 @@
 package frontier.ske.plugin
 
-import frontier.ske.java.util.unwrap
-import frontier.ske.pluginManager
+import frontier.ske.util.unwrap
 import org.spongepowered.api.plugin.PluginContainer
+import org.spongepowered.api.plugin.PluginManager
 
-fun Any.toPluginContainer(): PluginContainer? =
-    pluginManager.fromInstance(this).unwrap()
+operator fun PluginManager.get(instance: Any): PluginContainer? =
+    this.fromInstance(instance).unwrap()
 
-fun String.toPlugin(): PluginContainer? =
-    pluginManager.getPlugin(this).unwrap()
+operator fun PluginManager.get(id: String): PluginContainer? =
+    this.getPlugin(id).unwrap()
 
-inline val String.isPluginLoaded: Boolean
-    get() =
-        pluginManager.isLoaded(this)
+operator fun PluginManager.contains(id: String): Boolean =
+        this.isLoaded(id)

@@ -1,9 +1,13 @@
 package frontier.ske.service
 
-import frontier.ske.java.util.unwrap
+import frontier.ske.util.unwrap
 import org.spongepowered.api.service.ProviderRegistration
 import org.spongepowered.api.service.ServiceManager
 import kotlin.reflect.KClass
+
+//
+// ServiceManager
+//
 
 inline fun <reified T> ServiceManager.setProvider(plugin: Any, provider: T) {
     this.setProvider(plugin, T::class.java, provider)

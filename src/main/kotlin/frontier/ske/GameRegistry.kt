@@ -1,6 +1,6 @@
 package frontier.ske
 
-import frontier.ske.java.util.unwrap
+import frontier.ske.util.unwrap
 import org.spongepowered.api.CatalogType
 import org.spongepowered.api.GameRegistry
 import org.spongepowered.api.block.BlockType

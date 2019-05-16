@@ -1,23 +1,26 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
 }
 
 group 'io.github.thefrontier'
-version '1.0-SNAPSHOT'
+version '0.3.0'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
     maven {
-        name = 'sponge'
         url = 'https://repo.spongepowered.org/maven'
+    }
+    maven {
+        url = 'https://kotlin.bintray.com/kotlinx'
     }
 }
 
 dependencies {
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31"
+    compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.2.1"
 
     compileOnly 'org.spongepowered:spongeapi:7.1.0'
 }

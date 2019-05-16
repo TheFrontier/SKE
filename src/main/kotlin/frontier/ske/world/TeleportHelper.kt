@@ -1,6 +1,6 @@
 package frontier.ske.world
 
-import frontier.ske.java.util.unwrap
+import frontier.ske.util.unwrap
 import frontier.ske.teleportHelper
 import org.spongepowered.api.world.Location
 import org.spongepowered.api.world.TeleportHelper

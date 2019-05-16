@@ -7,6 +7,10 @@ import org.spongepowered.api.event.EventListener
 import org.spongepowered.api.event.EventManager
 import org.spongepowered.api.event.Order
 
+operator fun EventManager.set(plugin: Any, listener: Any) {
+    this.registerListeners(plugin, listener)
+}
+
 inline fun <reified T : Event> EventManager.registerListener(
     plugin: Any,
     listener: EventListener<in T>,

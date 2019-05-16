@@ -1,6 +1,6 @@
 package frontier.ske
 
-import frontier.ske.java.util.unwrap
+import frontier.ske.util.unwrap
 import org.spongepowered.api.*
 import org.spongepowered.api.asset.AssetManager
 import org.spongepowered.api.command.CommandManager

@@ -1,19 +1,19 @@
 package frontier.ske.network
 
-import frontier.ske.channelRegistrar
-import frontier.ske.java.util.unwrap
+import frontier.ske.util.unwrap
 import org.spongepowered.api.Platform
 import org.spongepowered.api.network.ChannelBinding
+import org.spongepowered.api.network.ChannelRegistrar
 
-fun String.toChannel(): ChannelBinding? =
-    channelRegistrar.getChannel(this).unwrap()
+operator fun ChannelRegistrar.get(channel: String): ChannelBinding? =
+    this.getChannel(channel).unwrap()
 
-fun ChannelBinding.unbind() {
-    channelRegistrar.unbindChannel(this)
+operator fun ChannelRegistrar.minusAssign(channel: ChannelBinding) {
+    this.unbindChannel(channel)
 }
 
-inline val Platform.Type.registeredChannels: Set<String>
-    get() = channelRegistrar.getRegisteredChannels(this)
+operator fun ChannelRegistrar.get(side: Platform.Type): Set<String> =
+    this.getRegisteredChannels(side)
 
-fun String.isChannelAvailable(): Boolean =
-    channelRegistrar.isChannelAvailable(this)
+operator fun ChannelRegistrar.contains(channel: String): Boolean =
+        this.isChannelAvailable(channel)
