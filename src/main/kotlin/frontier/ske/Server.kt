@@ -1,5 +1,7 @@
 package frontier.ske
 
+import frontier.ske.data.filter
+import frontier.ske.data.filterNot
 import frontier.ske.util.unwrap
 import kotlinx.coroutines.future.await
 import org.spongepowered.api.Server
@@ -26,11 +28,7 @@ fun Server.sendMessage(message: Text) {
 }
 
 inline val Server.visiblePlayers: Collection<Player>
-    get() = this.onlinePlayers.filterNot {
-        it.get(Keys.VANISH).orElse(false)
-    }
+    get() = this.onlinePlayers.filterNot(Keys.VANISH)
 
 inline val Server.vanishedPlayers: Collection<Player>
-    get() = this.onlinePlayers.filter {
-        it.get(Keys.VANISH).orElse(false)
-    }
+    get() = this.onlinePlayers.filter(Keys.VANISH)
