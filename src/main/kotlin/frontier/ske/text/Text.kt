@@ -21,7 +21,7 @@ operator fun Text.plus(other: Text): Text = Text.of(this, other)
 operator fun Text.plus(other: Text.Builder): Text = Text.of(this, other.build())
 operator fun Text.plus(other: String): Text = Text.of(this, other)
 
-fun Text.color(color: TextColor): Text = this.toBuilder().color(color).build()
+infix fun Text.color(color: TextColor): Text = this.toBuilder().color(color).build()
 
 fun Text.black(): Text = this.toBuilder().black().build()
 fun Text.darkBlue(): Text = this.toBuilder().darkBlue().build()
@@ -48,15 +48,32 @@ fun Text.italic(): Text = this.toBuilder().italic().build()
 
 fun Text.reset(): Text = this.toBuilder().reset().build()
 
-fun Text.openUrl(url: String): Text = this.toBuilder().openUrl(url).build()
-fun Text.openUrl(url: URL): Text = this.toBuilder().openUrl(url).build()
-fun Text.runCommand(command: String): Text = this.toBuilder().runCommand(command).build()
-fun Text.suggestCommand(command: String): Text = this.toBuilder().suggestCommand(command).build()
-fun Text.changePage(page: Int): Text = this.toBuilder().changePage(page).build()
-fun Text.executeCallback(callback: (CommandSource) -> Unit): Text = this.toBuilder().executeCallback(callback).build()
+infix fun Text.openUrl(url: String): Text =
+    this.toBuilder().openUrl(url).build()
 
-fun Text.showText(text: String): Text = this.toBuilder().showText(text).build()
-fun Text.showText(text: Text): Text = this.toBuilder().showText(text).build()
-fun Text.showItem(item: ItemStackSnapshot): Text = this.toBuilder().showItem(item).build()
+infix fun Text.openUrl(url: URL): Text =
+    this.toBuilder().openUrl(url).build()
 
-fun Text.insertText(text: String): Text = this.toBuilder().insertText(text).build()
+infix fun Text.runCommand(command: String): Text =
+    this.toBuilder().runCommand(command).build()
+
+infix fun Text.suggestCommand(command: String): Text =
+    this.toBuilder().suggestCommand(command).build()
+
+infix fun Text.changePage(page: Int): Text =
+    this.toBuilder().changePage(page).build()
+
+infix fun Text.executeCallback(callback: (CommandSource) -> Unit): Text =
+    this.toBuilder().executeCallback(callback).build()
+
+infix fun Text.showText(text: String): Text =
+    this.toBuilder().showText(text).build()
+
+infix fun Text.showText(text: Text): Text =
+    this.toBuilder().showText(text).build()
+
+infix fun Text.showItem(item: ItemStackSnapshot): Text =
+    this.toBuilder().showItem(item).build()
+
+infix fun Text.insertText(text: String): Text =
+    this.toBuilder().insertText(text).build()

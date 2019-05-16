@@ -51,15 +51,32 @@ fun Text.Builder.italic(): Text.Builder = style(TextStyles.ITALIC)
 
 fun Text.Builder.reset(): Text.Builder = color(TextColors.RESET).style(TextStyles.RESET)
 
-infix fun Text.Builder.openUrl(url: String): Text.Builder = this.onClick(TextActions.openUrl(URL(url)))
-infix fun Text.Builder.openUrl(url: URL): Text.Builder = this.onClick(TextActions.openUrl(url))
-infix fun Text.Builder.runCommand(command: String): Text.Builder = this.onClick(TextActions.runCommand(command))
-infix fun Text.Builder.suggestCommand(command: String): Text.Builder = this.onClick(TextActions.suggestCommand(command))
-infix fun Text.Builder.changePage(page: Int): Text.Builder = this.onClick(TextActions.changePage(page))
+infix fun Text.Builder.openUrl(url: String): Text.Builder =
+    this.onClick(TextActions.openUrl(URL(url)))
+
+infix fun Text.Builder.openUrl(url: URL): Text.Builder =
+    this.onClick(TextActions.openUrl(url))
+
+infix fun Text.Builder.runCommand(command: String): Text.Builder =
+    this.onClick(TextActions.runCommand(command))
+
+infix fun Text.Builder.suggestCommand(command: String): Text.Builder =
+    this.onClick(TextActions.suggestCommand(command))
+
+infix fun Text.Builder.changePage(page: Int): Text.Builder =
+    this.onClick(TextActions.changePage(page))
+
 infix fun Text.Builder.executeCallback(callback: (CommandSource) -> Unit): Text.Builder =
     this.onClick(TextActions.executeCallback(callback))
 
-infix fun Text.Builder.showText(text: String): Text.Builder = this.onHover(TextActions.showText(!text))
-infix fun Text.Builder.showText(text: Text): Text.Builder = this.onHover(TextActions.showText(text))
-infix fun Text.Builder.showItem(item: ItemStackSnapshot): Text.Builder = this.onHover(TextActions.showItem(item))
-infix fun Text.Builder.insertText(text: String): Text.Builder = this.onShiftClick(TextActions.insertText(text))
+infix fun Text.Builder.showText(text: String): Text.Builder =
+    this.onHover(TextActions.showText(!text))
+
+infix fun Text.Builder.showText(text: Text): Text.Builder =
+    this.onHover(TextActions.showText(text))
+
+infix fun Text.Builder.showItem(item: ItemStackSnapshot): Text.Builder =
+    this.onHover(TextActions.showItem(item))
+
+infix fun Text.Builder.insertText(text: String): Text.Builder =
+    this.onShiftClick(TextActions.insertText(text))
